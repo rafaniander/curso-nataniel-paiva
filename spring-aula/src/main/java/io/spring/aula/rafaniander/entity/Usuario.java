@@ -19,7 +19,19 @@ public class Usuario {
 
 	private String email;
 
+	private String senha;
+
 	private Integer idade;
+
+	public Usuario() {
+	}
+
+	public Usuario(Usuario usuario) {
+		this.nome = usuario.getNome();
+		this.email = usuario.getEmail();
+		this.senha = usuario.getSenha();
+		this.perfis = usuario.getPerfis();
+	}
 
 	public String getId() {
 		return id;
@@ -51,6 +63,14 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public Integer getIdade() {

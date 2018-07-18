@@ -2,9 +2,12 @@ package io.spring.aula.rafaniander.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
 
 @Document
-public class Perfil {
+public class Perfil implements GrantedAuthority {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	private String id;
@@ -25,6 +28,11 @@ public class Perfil {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	@Override
+	public String getAuthority() {
+		return nome;
 	}
 
 }
