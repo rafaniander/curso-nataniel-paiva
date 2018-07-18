@@ -1,6 +1,9 @@
 package io.spring.aula.rafaniander.entity;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -10,17 +13,13 @@ public class Usuario {
 	private String id;
 
 	private String nome;
+
+	@DBRef
+	private List<Perfil> perfis;
+
 	private String email;
+
 	private Integer idade;
-
-	public Usuario() {
-	}
-
-	public Usuario(String nome, String email, Integer idade) {
-		this.nome = nome;
-		this.email = email;
-		this.idade = idade;
-	}
 
 	public String getId() {
 		return id;
@@ -36,6 +35,14 @@ public class Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<Perfil> getPerfis() {
+		return perfis;
+	}
+
+	public void setPerfis(List<Perfil> perfis) {
+		this.perfis = perfis;
 	}
 
 	public String getEmail() {
