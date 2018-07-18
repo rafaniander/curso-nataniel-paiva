@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-	
+
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.resourceId("restservice");
@@ -19,7 +19,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.logout().invalidateHttpSession(true).clearAuthentication(true).and().authorizeRequests()
-				.antMatchers(HttpMethod.GET,"/usuario/**").hasAnyRole("ADMIN").anyRequest().denyAll();
+				.antMatchers("/perfil/**").hasAnyRole("ADMIN, OREIA").antMatchers("/usuario/**")
+				.hasAnyRole("ADMIN, OREIA").anyRequest().denyAll().antMatchers(HttpMethod.OPTIONS, "/**").permitAll();
 	}
 
 }
